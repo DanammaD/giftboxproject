@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+<div class="row mt-3">
+    <div class="col-md-9">
+      <h5 style="background-color:palevioletred" class="p-2">Customer details</h5>
+      <p><strong>Name:</strong>{{user.username}}</p>
+      <p><strong>Mobile:</strong>9866757644</p>
+      <p><strong>Mail:</strong>{{user.email}}</p>
+      <h5 style="background-color:palevioletred" class="p-2">Product details</h5>
+      {% for x in data %}
+      <div class="row mt-2">
+        <div class="col-md-6">
+            <img src="{{x.pid.pimage.url}}" width="100%" class="card-img-top" alt="...">
+
+        </div>
+        <div class="col-md-6">
+            <p><strong>Product Name:</strong>{{x.pid.name}}</p>
+            <p><strong>Price:</strong>Rs.{{x.pid.price}}</p>
+            <p><strong>category:</strong>{{x.pid.get_cat_display}}</p>
+            <p><strong>Product description:</strong>{{x.pid.pdetails}}</p>
+            <p>
+              <strong>QTY:</strong>
+              <a href="/updateqty/0/{{x.id}}" class="btn btn-danger">-</a>
+              <input type="number" value="{{x.qty}}" readonly>
+              <a href="/updateqty/1/{{x.id}}" class="btn btn-success">+</a>
+            </p>
+            <br>
+            <a href="/remove/{{x.id}}" class="btn btn-danger">Remove</a>&nbsp;&nbsp;&nbsp;
+          
+        </div>
+      </div>
+      {% endfor %}
+    </div><!---customer and product details-->
+    <div class="col-md-3">
+       <h5 style="background-color:palevioletred" class="p-2">Total amount</h5>
+       <p><strong>Total ({{n}} items):</strong>Rs.{{total}}</p>
+       <hr>
+       <p><strong>Total amount:</strong>Rs.{{total}}</p>
+       <a href="/placeorder" class="btn btn-danger">Place Order</a>
+    </div><!---total amount section-->
+  </div>
+ 
+
+{% endblock 'main' %}

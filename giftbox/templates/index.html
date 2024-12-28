@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+<div class="row mt-3">
+   <!--<div class="col-md-4 bg-light">
+       <h5>Filter by category</h5>
+       <hr>
+       <p><a href="/catfilter/1" class="anchor">By Mobile</a></p>
+       <p><a href="/catfilter/2" class="anchor">By Shoes</a></p>
+       <p><a href="/catfilter/3" class="anchor">By Clothes</a></p>
+       <h5>Filter by price range</h5>
+       <hr>
+       <form action="/range">
+          <div class="mb-3">
+             <label for="input1" class="form-label"><strong>Min Value:</strong></label>
+             <input type="number" name="min" class="form-control" id="input1" placeholder="Minimum value">
+          </div>
+          <div class="mb-3">
+             <label for="input2" class="form-label"><strong>Max Value:</strong></label>
+             <input type="number" name="max" class="form-control" id="input2" placeholder="Maximum value">
+          </div>
+          <div class="mb-3">
+             <input type="submit" class="btn btn-danger" value="submit">
+            
+          </div>
+
+       </form>
+       <h5>Sort by Price</h5>
+       <hr>
+       <p><a href="/sort/0" class="anchor">Low to High</a></p>
+       <p><a href="/sort/1" class="anchor">High to Low</a></p>
+    </div>-->
+    <div class="col-md-12">
+      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+         <div class="carousel-inner">
+           <div class="carousel-item active">
+             <img src="{% static 'assets/images/Birthday.jpg' %}" style="width:200px" class="d-block w-100" alt="...">
+           </div>
+           <div class="carousel-item">
+             <img src="{% static 'assets/images/christmas.webp' %}" class="d-block w-100" alt="...">
+           </div>
+           <div class="carousel-item">
+             <img src="{% static 'assets/images/home_living.webp' %}" class="d-block w-100" alt="...">
+           </div>
+           <div class="carousel-item">
+            <img src="{% static 'assets/images/chocolates.webp' %}" class="d-block w-100" alt="...">
+          </div>
+         </div>
+         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+           <span class="visually-hidden">Previous</span>
+         </button>
+         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+           <span class="visually-hidden">Next</span>
+         </button>
+       </div>
+
+    </div><!----product ends-->
+ </div>
+ <div class="row mt-3">
+  <div class="col-md-4" >
+       <h5>Filter by category</h5>
+       <hr>
+       <form class="d-flex" role="search" action="/productsearch">
+         <input class="form-control me-4" type=text name="pname" placeholder="Search" aria-label="Search">
+        <input type="submit" style="background-color: palevioletred;"  value="search">
+       </form>
+       <p><a href="/catfilter/1" class="anchor">By Birthday Gifts</a></p>
+       <p><a href="/catfilter/2" class="anchor">By Anniversary Gifts</a></p>
+       <p><a href="/catfilter/3" class="anchor">By Christmas</a></p>
+       <h5>Filter by price range</h5>
+       <hr>
+       <form action="/range">
+          <div class="mb-3">
+             <label for="input1" class="form-label"><strong>Min Value:</strong></label>
+             <input type="number" name="min" class="form-control" id="input1" placeholder="Minimum value">
+          </div>
+          <div class="mb-3">
+             <label for="input2" class="form-label"><strong>Max Value:</strong></label>
+             <input type="number" name="max" class="form-control" id="input2" placeholder="Maximum value">
+          </div>
+          <div class="mb-3">
+             <input type="submit" class="btn btn-danger" value="submit">
+            
+          </div>
+
+       </form>
+       <h5>Sort by Price</h5>
+       <hr>
+       <p><a href="/sort/0" class="anchor">Low to High</a></p>
+       <p><a href="/sort/1" class="anchor">High to Low</a></p>
+    </div>
+    <div class="col-md-8" style="background-color: pink">
+      <div class="row">
+        {% for x in products %}
+         <div class="col-md-4 mt-2">
+            <div class="card" style="width: 100%;">
+               <img src="{{x.pimage.url}}" class="card-img-top" height="200px" alt="...">
+               <div class="card-body">
+                  <h5 class="card-title">{{x.name}}</h5>
+                  <p class="card-text">{{x.price}}</p>
+                  {% if x.cat == 1 %}
+                  <p class="card-text">Cake</p>
+                  {% elif x.cat == 2 %}
+                  <p class="card-text">Chocolate</p>
+                  {% elif x.cat == 3 %}
+                  <p class="card-text">Flower</p>
+                  {% elif x.cat == 4 %}
+                  <p class="card-text">Personlisedgift</p>
+                  {% elif x.cat == 5 %}
+                  <p class="card-text">Plants</p>
+                  {% elif x.cat == 6 %}
+                  <p class="card-text">Perfumes</p>
+                  {% else %}
+                  <p class="card-text">Combos</p>
+                  {% endif %}
+                  <a href="/product_details/{{x.id}}" class="btn btn-danger">See details</a>
+               </div>
+            </div>
+         </div>
+         {% endfor %}   
+      </div>
+    </div>
+
+{% endblock 'main' %}

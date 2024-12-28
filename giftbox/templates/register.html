@@ -1,0 +1,49 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+</head>
+<body>
+    <div class="container-fluid" style="background-image: url('static/assets/images/bgimage1.jpg'); height:800px">
+        <div class="row">
+            <div class="col-md-4 shadow mt-4 p-4 mx-auto">
+                <h2 align="center">Registration</h2>
+                {% if  errmsg %}
+                   <div class="alert alert-danger">
+                       {{errmsg}}
+                   </div>
+                {% endif %}
+                <form method="POST" action="/register" >
+                  {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="input1" class="form-label"><strong>User Name:</strong></label>
+                        <input type="email" class="form-control" name="uname" id="input1" placeholder="Enter Username">
+                      </div>
+                      <div class="mb-3">
+                        <label for="input2" class="form-label"><strong>Password:</strong></label>
+                        <input type="password" class="form-control" name="upass" id="input2" placeholder="Enter Password">
+                      </div>
+                      <div class="mb-3">
+                        <label for="input3" class="form-label"><strong>Confirm Password:</strong></label>
+                        <input type="password" class="form-control" name="ucpass" id="input3" placeholder="Enter confirm password">
+                      </div>
+                      <div class="mb-3">
+                        <input type="submit" class="btn btn-danger" value="Register">
+                        Already User?<a href="/login">Login</a>
+                      </div>
+                      {% if  success %}
+                         <div class="alert alert-success">
+                            {{success}}
+                         </div>
+                      {% endif %}
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}" ></script>
+</body>
+</html>
